@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Oblig1</string>
+    <string name="app_name">Vacation Planner</string>
+    <string name="inp_antall_dager">Antall dager</string>
+    <string name="txt_hotellnavn">placeholder</string>
+    <string name="txt_bynavn">placeholder</string>
+    <string name="txt_valuta">placeholder</string>
+    <string name="btn_label">OK</string>
 </resources>
