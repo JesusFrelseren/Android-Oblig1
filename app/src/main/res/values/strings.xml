@@ -5,4 +5,10 @@
     <string name="txt_bynavn">placeholder</string>
     <string name="txt_valuta">placeholder</string>
     <string name="btn_label">OK</string>
+
+
+    <string-array name="countries">
+        <item>Peru</item>
+        <item>land</item>
+    </string-array>
 </resources>
