@@ -9,6 +9,18 @@
 
     <string-array name="countries">
         <item>Peru</item>
-        <item>land</item>
+        <item>Island</item>
     </string-array>
+
+    <string-array name="hotels">
+        <item index="0">HotelPeru</item>
+        <item index="1">HotelLand</item>
+    </string-array>
+
+    <string-array name="cities">
+        <item>Test</item>
+        <item>Test2</item>
+    </string-array>
+
+
 </resources>
