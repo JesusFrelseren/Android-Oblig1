@@ -12,6 +12,11 @@
         <item>Island</item>
     </string-array>
 
+    <string-array name="country_codes">
+        <item>PER</item>
+        <item>LND</item>
+    </string-array>
+
     <string-array name="hotels">
         <item index="0">HotelPeru</item>
         <item index="1">HotelLand</item>

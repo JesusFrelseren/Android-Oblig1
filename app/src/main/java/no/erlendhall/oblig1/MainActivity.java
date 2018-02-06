@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Spinner spinner;
     TextView txt_hotel, txt_by;
     Button btnNext;
+    String countryCode;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                intent.putExtra(countryCode, "country_code");
                 startActivity(intent);
 
             }
@@ -37,8 +40,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
+    /*
+    * When spinner-item is selected, the layout gets updated
+     */
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         updateLayout(pos);
+
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
@@ -55,8 +62,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
+
     protected void updateLayout(int index) {
         Resources res = getResources();
+        String[] countryCodes = res.getStringArray(R.array.country_codes);
+        countryCode = countryCodes[index];
+
 
         // Hotell
         String[] hotels = res.getStringArray(R.array.hotels);
