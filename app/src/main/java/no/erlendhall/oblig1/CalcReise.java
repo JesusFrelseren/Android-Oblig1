@@ -3,6 +3,7 @@ package no.erlendhall.oblig1;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -13,14 +14,10 @@ public class CalcReise extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc);
         Bundle extras = getIntent().getExtras();
-        String test = extras.getString("country_code");
 
-        Context context = getApplicationContext();
-
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, test, duration);
-        toast.show();
+        if(!(extras.getString("c") == null)) {
+            String countryCode = extras.getString("c");
+        }
 
     }
 

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Spinner spinner;
     TextView txt_hotel, txt_by;
     Button btnNext;
-    String countryCode;
+    String countryCode = "test";
 
 
     @Override
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent.putExtra(countryCode, "country_code");
+                intent.putExtra("c", countryCode);
                 startActivity(intent);
 
             }
