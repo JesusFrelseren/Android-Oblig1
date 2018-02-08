@@ -5,27 +5,47 @@
     <string name="txt_bynavn">placeholder</string>
     <string name="txt_valuta">placeholder</string>
     <string name="btn_label">OK</string>
+    <string name="lbl_antall_dager">How long will you stay?</string>
+    <string name="lbl_sum_header">Your stay</string>
+    <string name="lbl_sum">Please provide number of days youre staying below</string>
+    <string name="lbl_hotellnavn">Hotel Name</string>
+    <string name="lbl_city_name">City Name</string>
+    <string name="lbl_conversion_presentation">100 NOK is </string>
 
 
     <string-array name="countries">
         <item>Peru</item>
-        <item>Island</item>
-    </string-array>
-
-    <string-array name="country_codes">
-        <item>PER</item>
-        <item>LND</item>
+        <item>Mexico</item>
+        <item>Russia</item>
+        <item>Netherlands</item>
+        <item>Australia</item>
     </string-array>
 
     <string-array name="hotels">
-        <item index="0">HotelPeru</item>
-        <item index="1">HotelLand</item>
+        <item>Dazzler Lima</item>
+        <item>Hotel Corinto</item>
+        <item>Kosmos</item>
+        <item>Marriot Hotel</item>
+        <item>The Westin Sydney</item>
     </string-array>
 
     <string-array name="cities">
-        <item>Test</item>
-        <item>Test2</item>
+        <item>Lima</item>
+        <item>Mexico City</item>
+        <item>Moskva</item>
+        <item>Amsterdam</item>
+        <item>Sydney</item>
     </string-array>
+    <string name="peru" code="EUR" />
+
+    <string-array name="currencies">
+        <item>PEN</item>
+        <item>MXN</item>
+        <item>RUB</item>
+        <item>EUR</item>
+        <item>AUD</item>
+    </string-array>
+
 
 
 </resources>

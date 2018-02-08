@@ -16,14 +16,14 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinner;
-    TextView txt_hotel, txt_by;
+    TextView txt_by;
     Button btnNext;
-    String countryCode = "test";
+    String currencyCode;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        final Intent intent = new Intent(this, CalcReise.class);
+        final Intent intent = new Intent(this, CalcReiseActivity.class);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initSpinner();
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent.putExtra("c", countryCode);
+                intent.putExtra("c", currencyCode);
                 startActivity(intent);
 
             }
@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void initSpinner() {
         spinner = findViewById(R.id.spin_countries);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this, R.array.countries, android.R.layout.simple_spinner_item);
+                this, R.array.countries, R.layout.spinner_item);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(R.layout.spinner_items_dropdown);
         spinner.setAdapter(adapter);
 
     }
@@ -65,9 +65,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     protected void updateLayout(int index) {
         Resources res = getResources();
-        String[] countryCodes = res.getStringArray(R.array.country_codes);
-        countryCode = countryCodes[index];
+        String[] currencyCodes = res.getStringArray(R.array.currencies);
+        currencyCode = currencyCodes[index];
 
+        //Landnavn
+        String[] countries = res.getStringArray(R.array.countries);
+        TextView txt_land = findViewById(R.id.lbl_countries_name);
+        txt_land.setText(countries[index]);
 
         // Hotell
         String[] hotels = res.getStringArray(R.array.hotels);
@@ -84,15 +88,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         switch(index) {
             case 0:
-                img.setImageResource(R.mipmap.peruvian_flag);
+                img.setImageResource(R.mipmap.peruvian_flag_foreground);
                 break;
             case 1:
-                img.setImageResource(R.mipmap.ic_launcher);
+                img.setImageResource(R.mipmap.mexico_foreground);
+                break;
             case 2:
-                //
+                img.setImageResource(R.mipmap.russia_foreground);
+                break;
             case 3:
-                //
+                img.setImageResource(R.mipmap.netherlands_foreground);
+                break;
             case 4:
+                img.setImageResource(R.mipmap.australia_foreground);
+                break;
         }
 
         //
