@@ -7,14 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity  {
     TextView txt_by;
     Button btnNext;
     String currencyCode;
@@ -28,8 +28,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         final Intent intent = new Intent(this, CalcReiseActivity.class);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initDrawer();
+        initMenu();
 
+        //todo: endre OK knappen
         btnNext = findViewById(R.id.til_calc);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,22 +44,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    /*
-    * When spinner-item is selected, the layout gets updated
-     */
-    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        updateLayout(pos);
+    protected void initMenu() {
 
-    }
-
-    public void onNothingSelected(AdapterView<?> parent) {
-        // do nothing
-    }
-
-    protected void initDrawer() {
-        /*dlCountries = findViewById(R.id.drawer_layout);
-        String[] countries_menu = getResources().getStringArray(R.array.countries);
-        lstCountries = findViewById(R.id.list);*/
+        lstCountries = findViewById(R.id.nav_countries);
+        lstCountries.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CharSequence test = "test";
+                Toast.makeText(getBaseContext(), test, Toast.LENGTH_SHORT).show();
+                //todo: Update layout
+            }
+        });
 
     }
 
@@ -85,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         //Flagg
         ImageView img = findViewById(R.id.flag);
-
+        //todo: dynamisk vildehåndtering
         switch(index) {
             case 0:
                 img.setImageResource(R.mipmap.peruvian_flag_foreground);

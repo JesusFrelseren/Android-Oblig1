@@ -37,6 +37,7 @@
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
+    <!-- todo: Flytt til ny resource-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

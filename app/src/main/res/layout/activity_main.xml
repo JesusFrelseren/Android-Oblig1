@@ -156,11 +156,11 @@
 
 
     <ListView
-        android:id="@+id/navigation2"
+        android:id="@+id/nav_countries"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:entries="@array/cities"
+        android:entries="@menu/menu"
         android:background="@color/colorPrimary"/>
 
 

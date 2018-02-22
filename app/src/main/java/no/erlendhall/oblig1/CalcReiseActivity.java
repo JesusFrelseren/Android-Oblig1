@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
-
+//todo: Skal nå kalkulere totale reisekostnader, CalcReise.kt fjernes
 public class CalcReiseActivity extends AppCompatActivity {
     String currencyCode;
     TextView conversion;
@@ -21,6 +21,8 @@ public class CalcReiseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc);
         Bundle extras = getIntent().getExtras();
+
+        //todo: sett inn nytt CurrencyManagerFragment
 
         if(!(extras.getString("c") == null)) {
             currencyCode = extras.getString("c");
@@ -47,6 +49,7 @@ public class CalcReiseActivity extends AppCompatActivity {
                     int numDays = Integer.parseInt(charSequence.toString());
                     updateLayout(numDays);
                 }
+                //todo: Send totalsum og valuta til CurrencyManager
 
             }
 
