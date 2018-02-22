@@ -12,6 +12,16 @@
     <string name="lbl_city_name">City Name</string>
     <string name="lbl_conversion_presentation">100 NOK is </string>
 
+    <string name="en_us_peru">Peru</string>
+    <string name="en_us_mexico">Mexico</string>
+    <string name="en_us_russia">Russia</string>
+    <string name="en_us_netherlands">Netherlands</string>
+    <string name="en_us_australia">Australia</string>
+    <string name="en_us_jamaica">Jamaica</string>
+    <string name="en_us_norway">Norway</string>
+    <string name="en_us_japan">Japan</string>
+    <string name="en_us_andorra">Andorra</string>
+
 
     <string-array name="countries">
         <item>Peru</item>

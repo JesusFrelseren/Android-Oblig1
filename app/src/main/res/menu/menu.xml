@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_peru" android:title="@string/en_us_peru" />
+    <item android:id="@+id/menu_mexico" android:title="@string/en_us_mexico" />
+    <item android:id="@+id/menu_russia" android:title="@string/en_us_russia" />
+    <item android:id="@+id/menu_netherlands" android:title="@string/en_us_netherlands"/>
+    <item android:id="@+id/menu_australia" android:title="@string/en_us_australia"/>
+    <item android:id="@+id/menu_jamaica" android:title="@string/en_us_jamaica" />
+    <item android:id="@+id/menu_norway" android:title="@string/en_us_norway" />
+    <item android:id="@+id/menu_japan" android:title="@string/en_us_japan" />
+    <item android:id="@+id/menu_andorra" android:title="@string/en_us_andorra" />
+
+</menu>
