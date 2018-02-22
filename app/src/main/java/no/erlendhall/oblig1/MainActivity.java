@@ -1,8 +1,8 @@
 package no.erlendhall.oblig1;
 
-
 import android.content.Intent;
 import android.content.res.Resources;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,15 +10,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    Spinner spinner;
     TextView txt_by;
     Button btnNext;
     String currencyCode;
+    private DrawerLayout dlCountries;
+    private ListView lstCountries;
+
 
 
     @Override
@@ -26,8 +28,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         final Intent intent = new Intent(this, CalcReiseActivity.class);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initSpinner();
-        spinner.setOnItemSelectedListener(this);
+        initDrawer();
+
         btnNext = findViewById(R.id.til_calc);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             }
         });
+
 
     }
 
@@ -52,13 +55,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // do nothing
     }
 
-    protected void initSpinner() {
-        spinner = findViewById(R.id.spin_countries);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this, R.array.countries, R.layout.spinner_item);
-
-        adapter.setDropDownViewResource(R.layout.spinner_items_dropdown);
-        spinner.setAdapter(adapter);
+    protected void initDrawer() {
+        /*dlCountries = findViewById(R.id.drawer_layout);
+        String[] countries_menu = getResources().getStringArray(R.array.countries);
+        lstCountries = findViewById(R.id.list);*/
 
     }
 
