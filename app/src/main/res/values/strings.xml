@@ -4,7 +4,7 @@
     <string name="txt_hotellnavn">placeholder</string>
     <string name="txt_bynavn">placeholder</string>
     <string name="txt_valuta">placeholder</string>
-    <string name="btn_label">OK</string>
+    <string name="btn_label">Calculate stay</string>
     <string name="lbl_antall_dager">How long will you stay?</string>
     <string name="lbl_sum_header">Your stay</string>
     <string name="lbl_sum">Please provide number of days youre staying below</string>

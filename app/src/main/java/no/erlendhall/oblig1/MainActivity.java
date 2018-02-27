@@ -5,13 +5,14 @@ import android.content.res.Resources;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity  {
@@ -45,14 +46,20 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     protected void initMenu() {
+        dlCountries = findViewById(R.id.drawer_layout);
+        String[] menus = getResources().getStringArray(R.array.countries);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                R.layout.support_simple_spinner_dropdown_item, menus);
 
         lstCountries = findViewById(R.id.nav_countries);
-        lstCountries.setOnClickListener(new View.OnClickListener() {
+        lstCountries.setAdapter(adapter);
+
+        lstCountries.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
-                CharSequence test = "test";
-                Toast.makeText(getBaseContext(), test, Toast.LENGTH_SHORT).show();
-                //todo: Update layout
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                updateLayout(i);
+                dlCountries.closeDrawer(Gravity.START);
+
             }
         });
 
@@ -81,7 +88,7 @@ public class MainActivity extends AppCompatActivity  {
 
         //Flagg
         ImageView img = findViewById(R.id.flag);
-        //todo: dynamisk vildehåndtering
+        //todo: dynamisk bildehåndtering
         switch(index) {
             case 0:
                 img.setImageResource(R.mipmap.peruvian_flag_foreground);
@@ -99,9 +106,6 @@ public class MainActivity extends AppCompatActivity  {
                 img.setImageResource(R.mipmap.australia_foreground);
                 break;
         }
-
-        //
-
 
     }
 }
