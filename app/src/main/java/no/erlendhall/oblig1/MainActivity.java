@@ -1,5 +1,7 @@
 package no.erlendhall.oblig1;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v4.widget.DrawerLayout;
@@ -30,6 +32,12 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initMenu();
+
+        //Load fragment
+        Fragment fragCurrencyManager = new CurrencyManagerFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container, fragCurrencyManager);
+        transaction.commit();
 
         //todo: endre OK knappen
         btnNext = findViewById(R.id.til_calc);

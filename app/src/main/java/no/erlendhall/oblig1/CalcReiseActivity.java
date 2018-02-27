@@ -35,6 +35,8 @@ public class CalcReiseActivity extends AppCompatActivity {
         conversion.setText(" " + output + currencyCode);
 
 
+
+
         // EditText listener
         EditText numDays = findViewById(R.id.antall_dager);
         numDays.addTextChangedListener(new TextWatcher() {
