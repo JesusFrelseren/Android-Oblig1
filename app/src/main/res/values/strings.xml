@@ -22,6 +22,8 @@
     <string name="en_us_japan">Japan</string>
     <string name="en_us_andorra">Andorra</string>
 
+    <string name="en_us_change_currency">Change currency</string>
+
 
     <string-array name="countries">
         <item>Peru</item>

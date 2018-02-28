@@ -7,7 +7,9 @@ import android.content.res.Resources;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,25 +35,27 @@ public class MainActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_main);
         initMenu();
 
-        //Load fragment
-        Fragment fragCurrencyManager = new CurrencyManagerFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container, fragCurrencyManager);
-        transaction.commit();
 
         //todo: endre OK knappen
         btnNext = findViewById(R.id.til_calc);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent.putExtra("c", currencyCode);
+                //intent.putExtra("c", currencyCode);
                 startActivity(intent);
 
             }
         });
 
 
+
+
     }
+
+
+
+
+
 
     protected void initMenu() {
         dlCountries = findViewById(R.id.drawer_layout);
