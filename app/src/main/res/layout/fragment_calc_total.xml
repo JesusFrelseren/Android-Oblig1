@@ -27,6 +27,7 @@
             android:textColor="@color/colorAccent"
             android:textSize="20sp" />
 
+        <!-- kalkuleringsresultat -->
         <TextView
             android:id="@+id/lbl_sum"
             android:layout_width="match_parent"
@@ -35,6 +36,13 @@
             android:text="@string/lbl_sum"
             android:textAlignment="center"
             android:textColor="@color/colorAccent" />
+
+        <!-- velg valuta -->
+        <Spinner
+            android:id="@+id/cur_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
     </LinearLayout>
 
     <!-- Input antall feriedager -->
@@ -58,12 +66,11 @@
             android:layout_marginBottom="80sp"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerInParent="true"
-            >
+            android:orientation="vertical">
 
+            <!-- antall dager -->
             <EditText
                 android:id="@+id/antall_dager"
                 android:layout_width="wrap_content"
@@ -71,14 +78,49 @@
                 android:inputType="number"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent"
-                android:ems="5"/>
+                android:ems="5" />
 
-            <Spinner
-                android:id="@+id/cur_spinner"
+            <!-- flybillett -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/en_us_plane_cost"
+                android:textAlignment="center"/>
+
+            <EditText
+                android:id="@+id/place_ticket_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ems="5"
+                android:gravity="center"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent" />
+
+            <!-- oppholdskostnader -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/en_us_plane_avg_expenditure"
+                android:textAlignment="center"/>
+
+            <EditText
+                android:id="@+id/avg_expenditure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:ems="5"
+                android:gravity="center_horizontal" />
+            <Button
+                android:id="@+id/btn_calc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calculate"/>
 
-                />
         </LinearLayout>
 
     </RelativeLayout>

@@ -8,14 +8,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import org.w3c.dom.Text
 
-/**
- * Created by Erlen on 27-Feb-18.
- */
+
 
 class BaseCurrencyFragment : Fragment() {
     companion object {
         @JvmStatic
-        fun newInstance() : TotalCostFragment {
+        fun newInstance(): TotalCostFragment {
             return TotalCostFragment()
         }
     }
@@ -33,7 +31,8 @@ class BaseCurrencyFragment : Fragment() {
 
         test.text = out.toString()
         return view
-    }
 
+
+    }
 
 }

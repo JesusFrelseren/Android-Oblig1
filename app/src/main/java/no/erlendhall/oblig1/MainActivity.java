@@ -53,10 +53,6 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 
-
-
-
-
     protected void initMenu() {
         dlCountries = findViewById(R.id.drawer_layout);
         String[] menus = getResources().getStringArray(R.array.countries);

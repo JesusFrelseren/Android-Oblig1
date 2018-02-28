@@ -54,7 +54,28 @@ public class CalcReiseActivity extends AppCompatActivity {
 
     }
 
-        //Load spinner with currencies
+
+
+    private void updateLayout(int numDays) {
+
+        // Show total travel costs
+        Double sum = tc.CalculateStay(currencyCode, numDays);
+        TextView txt = findViewById(R.id.lbl_sum);
+        String sumRounded = String.format("%.2f", sum);
+        txt.setText(sumRounded + "NOK");
+    }
+
+    private void setCurrency(String newCode, String newCurrency) {
+        fragmentBundle.putString(newCode, newCurrency);
+        baseCurrencyFragment.setArguments(fragmentBundle);
+        totalCostFragment.setArguments(fragmentBundle);
+    }
+
+
+}
+
+
+//Load spinner with currencies
 
 
         /*
@@ -79,51 +100,3 @@ public class CalcReiseActivity extends AppCompatActivity {
         conversion.setText(" " + output + currencyCode);
 
 */
-
-
-/*
-        // EditText listener
-        EditText numDays = findViewById(R.id.antall_dager);
-        numDays.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                // useless override
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(!charSequence.toString().equals("")) {
-                    int numDays = Integer.parseInt(charSequence.toString());
-                    updateLayout(numDays);
-                }
-                //todo: Send totalsum og valuta til CurrencyManager
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                // useless override
-            }
-        });
-
-
-
-    } */
-
-    private void updateLayout(int numDays) {
-
-        // Show total travel costs
-        Double sum = tc.CalculateStay(currencyCode, numDays);
-        TextView txt = findViewById(R.id.lbl_sum);
-        String sumRounded = String.format("%.2f", sum);
-        txt.setText(sumRounded + "NOK");
-    }
-
-    private void setCurrency(String newCode, String newCurrency) {
-        fragmentBundle.putString(newCode, newCurrency);
-        baseCurrencyFragment.setArguments(fragmentBundle);
-        totalCostFragment.setArguments(fragmentBundle);
-    }
-
-
-}
