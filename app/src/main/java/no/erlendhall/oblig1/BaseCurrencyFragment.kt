@@ -6,15 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import org.w3c.dom.Text
-
 
 
 class BaseCurrencyFragment : Fragment() {
     companion object {
         @JvmStatic
-        fun newInstance(): TotalCostFragment {
-            return TotalCostFragment()
+        fun newInstance(): JTotalCostFragment {
+            return JTotalCostFragment()
         }
     }
 
@@ -23,16 +21,14 @@ class BaseCurrencyFragment : Fragment() {
 
         //Receive intent
         val extras = arguments.getString("currencycode")
-        val test: TextView = view.findViewById(R.id.conversion)
-        val out = StringBuilder()
-        extras.forEach {
-            out.append(it)
-        }
+        val lblCurrency: TextView = view.findViewById(R.id.conversion)
 
-        test.text = out.toString()
+        lblCurrency.text = extras
         return view
 
 
     }
+
+
 
 }

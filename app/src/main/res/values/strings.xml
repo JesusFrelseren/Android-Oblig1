@@ -21,10 +21,16 @@
     <string name="en_us_norway">Norway</string>
     <string name="en_us_japan">Japan</string>
     <string name="en_us_andorra">Andorra</string>
+    <string name="en_us_add_country">Add new country</string>
+    <string name="en_us_country_name">Country Name</string>
+    <string name="en_us_city_name">City Name</string>
+    <string name="en_us_hotel_name">Hotel Name</string>
+    <string name="en_us_btn_add_country">Add Country</string>
 
     <string name="en_us_change_currency">Change currency</string>
     <string name="en_us_plane_cost">How much is the return trip?</string>
     <string name="en_us_plane_avg_expenditure">What is your average daily expenditures?</string>
+    <string name="en_us_lbl_currency">Choose Currency</string>
 
 
     <string-array name="countries">
@@ -53,21 +59,21 @@
     <string name="peru" code="EUR" />
 
     <string-array name="currencies">
+        <item>NOK</item>
         <item>PEN</item>
         <item>MXN</item>
         <item>RUB</item>
         <item>EUR</item>
         <item>AUD</item>
-        <item>NOK</item>
     </string-array>
 
     <string-array name="currency_bases">
+        <item>1</item>
         <item>0.41</item>
         <item>2.38</item>
         <item>7.13</item>
         <item>0.10</item>
         <item>0.16</item>
-        <item>1</item>
     </string-array>
 
 

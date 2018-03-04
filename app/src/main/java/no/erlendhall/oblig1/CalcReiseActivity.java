@@ -2,32 +2,20 @@ package no.erlendhall.oblig1;
 
 
 import android.app.FragmentTransaction;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import android.widget.Toast;
 
 
 //todo: Skal nå kalkulere totale reisekostnader, CalcReise.kt fjernes
-public class CalcReiseActivity extends AppCompatActivity {
-    String currencyCode;
-    TextView conversion;
-    TravelCalculator tc;
+public class CalcReiseActivity extends AppCompatActivity implements JTotalCostFragment.OnUpdateCurrency {
+
     private FragmentTransaction transaction;
-    private TotalCostFragment totalCostFragment;
+    private JTotalCostFragment totalCostFragment;
     private BaseCurrencyFragment baseCurrencyFragment;
     Bundle fragmentBundle;
-    private Spinner spinCurrencies;
-
 
 
     @Override
@@ -38,7 +26,7 @@ public class CalcReiseActivity extends AppCompatActivity {
 
 
         //Load fragments
-        totalCostFragment = new TotalCostFragment();
+        totalCostFragment = new JTotalCostFragment();
         baseCurrencyFragment = new BaseCurrencyFragment();
 
         //onCreate currency defaults to NOK
@@ -56,47 +44,15 @@ public class CalcReiseActivity extends AppCompatActivity {
 
 
 
-    private void updateLayout(int numDays) {
-
-        // Show total travel costs
-        Double sum = tc.CalculateStay(currencyCode, numDays);
-        TextView txt = findViewById(R.id.lbl_sum);
-        String sumRounded = String.format("%.2f", sum);
-        txt.setText(sumRounded + "NOK");
-    }
-
-    private void setCurrency(String newCode, String newCurrency) {
-        fragmentBundle.putString(newCode, newCurrency);
+    @Override
+    public void onCurrencySelected(String i) {
+        baseCurrencyFragment = new BaseCurrencyFragment();
+        fragmentBundle.putString("currencycode", " " + i);
         baseCurrencyFragment.setArguments(fragmentBundle);
-        totalCostFragment.setArguments(fragmentBundle);
+        transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_base_container, baseCurrencyFragment);
+        transaction.commit();
     }
-
-
 }
 
 
-//Load spinner with currencies
-
-
-        /*
-        String[] spinner_content = res.getStringArray(R.array.currencies);
-        List<String> spinnerArray = new List<>(Arrays.asList(spinner_content));
-        spinCurrencies = findViewById(R.id.cur_spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>
-                (this, R.layout.support_simple_spinner_dropdown_item, spinnerArray);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinCurrencies.setAdapter(adapter);
-
-    }
-        /*
-        if(!(extras.getString("c") == null)) {
-            currencyCode = extras.getString("c");
-        }
-
-        // Display currency conversion
-        tc = new TravelCalculator();
-        conversion = findViewById(R.id.conversion);
-        Double output = tc.getBases().get(currencyCode) * 100.0;
-        conversion.setText(" " + output + currencyCode);
-
-*/
