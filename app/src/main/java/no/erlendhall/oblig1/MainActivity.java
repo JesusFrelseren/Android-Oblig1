@@ -1,16 +1,13 @@
 package no.erlendhall.oblig1;
 
-import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -28,13 +24,8 @@ public class MainActivity extends AppCompatActivity implements AddCountryFragmen
     TextView txt_by;
     Button btnNext, btnAddCountry;
     private DrawerLayout dlCountries;
-    private ListView lstCountries;
     private FragmentTransaction transaction;
-
     private ArrayList<String> countries, cities, hotels;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +38,6 @@ public class MainActivity extends AppCompatActivity implements AddCountryFragmen
         hotels = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.hotels)));
         initMenu();
 
-
-        //todo: endre OK knappen
         btnNext = findViewById(R.id.til_calc);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,10 +73,9 @@ public class MainActivity extends AppCompatActivity implements AddCountryFragmen
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 R.layout.listview_style, regCountries);
 
-        lstCountries = findViewById(R.id.nav_countries);
+        ListView lstCountries = findViewById(R.id.nav_countries);
         lstCountries.setAdapter(adapter);
-        lstCountries.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-
+        lstCountries.setBackgroundColor(ContextCompat.getColor(getBaseContext(), R.color.colorPrimary));
 
 
         lstCountries.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -101,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements AddCountryFragmen
 
     }
 
+    //Adds a new country with info from fragment and updates ListView in Drawer
     protected void addNewCountry(String country, String city, String hotel) {
         countries.add(country);
         cities.add(city);
@@ -108,12 +97,8 @@ public class MainActivity extends AppCompatActivity implements AddCountryFragmen
         initMenu();
     }
 
-
+    //Is called whenever user clicks an item in ListView Drawer
     protected void updateLayout(int index) {
-
-        Resources res = getResources();
-        String[] currencyCodes = res.getStringArray(R.array.currencies);
-
 
         //Landnavn
         String[] countriesS = countries.toArray(new String[0]);
@@ -132,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements AddCountryFragmen
 
         //Flagg
         ImageView img = findViewById(R.id.flag);
-        //todo: dynamisk bildehåndtering
         switch(index) {
             case 0:
                 img.setImageResource(R.mipmap.peruvian_flag_foreground);
@@ -155,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements AddCountryFragmen
 
     }
 
+    //Receives names of country, city and hotel from AddCountryFragment
     @Override
     public void onNewCountryButtonListener(String countryName, String cityName, String hotelName) {
         findViewById(R.id.main).setVisibility(View.VISIBLE);

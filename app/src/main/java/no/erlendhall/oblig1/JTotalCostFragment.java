@@ -2,6 +2,7 @@ package no.erlendhall.oblig1;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -21,13 +22,11 @@ import java.util.Locale;
 
 public class JTotalCostFragment extends Fragment {
     private double previousBase, inNok;
-    private Bundle fragmentBundle;
     OnUpdateCurrency callback;
 
     public JTotalCostFragment newInstance() {
         previousBase = 1.0;
         inNok = 0.0;
-        fragmentBundle = new Bundle();
         return new JTotalCostFragment();
     }
 
@@ -35,16 +34,18 @@ public class JTotalCostFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calc_total, container, false);
-        String[] items = getResources().getStringArray(R.array.currencies);
-        String[] currencyBases = getResources().getStringArray(R.array.currency_bases);
 
+        //Construct a spinner containing currencies
+        String[] currencies = getResources().getStringArray(R.array.currencies);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                getContext(), R.layout.spinner_currency_style, items);
+                getContext(), R.layout.spinner_currency_style, currencies);
         adapter.setDropDownViewResource(R.layout.spinner_currency_style_item);
 
         Spinner spinner = view.findViewById(R.id.cur_spinner);
         spinner.setAdapter(adapter);
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -64,7 +65,7 @@ public class JTotalCostFragment extends Fragment {
             }
         });
 
-
+        //The calculate button
         Button btnCalc = view.findViewById(R.id.btn_calc);
         btnCalc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +86,6 @@ public class JTotalCostFragment extends Fragment {
     private void updateCurrency(int pos, double total) {
         View view = getView();
         TextView txtSum = view.findViewById(R.id.lbl_sum);
-        TextView txtCurrency = view.findViewById(R.id.lbl_currency);
 
         String[] currency = getResources().getStringArray(R.array.currencies);
         String[] currencyBases = getResources().getStringArray(R.array.currency_bases);
@@ -101,6 +101,7 @@ public class JTotalCostFragment extends Fragment {
         previousBase = Double.valueOf(currencyBases[pos]);
     }
 
+    //Calculates and displays the travel costs in the chosen currency.
     private void updateSum(int i) {
         View view = getView();
         EditText numDays = view.findViewById(R.id.antall_dager);
@@ -122,20 +123,23 @@ public class JTotalCostFragment extends Fragment {
         txtSum.setText(sumConvertedString);
     }
 
+
+    //Simply returns the conversion of 100NOK to a chosen currency
     private Double baseConversion(int i) {
         String[] bases = getResources().getStringArray(R.array.currency_bases);
         return 100 * Double.valueOf(bases[i]);
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            callback = (OnUpdateCurrency)activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString());
-        }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Activity a;
+
+        if(context instanceof Activity) {
+            a = (Activity)context;
+            callback = (OnUpdateCurrency) a;
+        }
     }
 
     public interface OnUpdateCurrency {

@@ -2,6 +2,7 @@ package no.erlendhall.oblig1;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.LayoutInflater;
@@ -50,17 +51,17 @@ public class AddCountryFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
 
-        try {
-            callback = (OnNewCountryAdded)activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString());
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Activity a;
+
+        if(context instanceof Activity) {
+            a = (Activity)context;
+            callback = (OnNewCountryAdded)a;
         }
     }
-
 
     public interface OnNewCountryAdded {
 

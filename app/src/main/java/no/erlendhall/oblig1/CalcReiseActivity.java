@@ -4,16 +4,11 @@ package no.erlendhall.oblig1;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
-//todo: Skal nå kalkulere totale reisekostnader, CalcReise.kt fjernes
 public class CalcReiseActivity extends AppCompatActivity implements JTotalCostFragment.OnUpdateCurrency {
 
     private FragmentTransaction transaction;
-    private JTotalCostFragment totalCostFragment;
     private BaseCurrencyFragment baseCurrencyFragment;
     Bundle fragmentBundle;
 
@@ -22,14 +17,12 @@ public class CalcReiseActivity extends AppCompatActivity implements JTotalCostFr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc);
-        //Bundle extras = getIntent().getExtras();
-
 
         //Load fragments
-        totalCostFragment = new JTotalCostFragment();
+        JTotalCostFragment totalCostFragment = new JTotalCostFragment();
         baseCurrencyFragment = new BaseCurrencyFragment();
 
-        //onCreate currency defaults to NOK
+        //NOK is the default baseline currency
         fragmentBundle = new Bundle();
         fragmentBundle.putString("currencycode", "NOK");
         baseCurrencyFragment.setArguments(fragmentBundle);
@@ -43,11 +36,12 @@ public class CalcReiseActivity extends AppCompatActivity implements JTotalCostFr
     }
 
 
-
+    //Here the activity receices a cc (currency code) from JTotalCostFragment as a string.
+    //It uses the string to create a new BaseCurrencyFragment
     @Override
-    public void onCurrencySelected(String i) {
+    public void onCurrencySelected(String cc) {
         baseCurrencyFragment = new BaseCurrencyFragment();
-        fragmentBundle.putString("currencycode", " " + i);
+        fragmentBundle.putString("currencycode", " " + cc);
         baseCurrencyFragment.setArguments(fragmentBundle);
         transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_base_container, baseCurrencyFragment);
