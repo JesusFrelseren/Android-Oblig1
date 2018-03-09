@@ -76,6 +76,11 @@
         <item>0.16</item>
     </string-array>
 
+    <string-array name="options">
+        <item>Calculate travel costs</item>
+        <item>Add new country</item>
+    </string-array>
+
 
 
 </resources>

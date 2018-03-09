@@ -27,9 +27,10 @@ public class MainActivity extends AppCompatActivity implements AddCountryFragmen
     private FragmentTransaction transaction;
     private ArrayList<String> countries, cities, hotels;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        final Intent intent = new Intent(this, CalcReiseActivity.class);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements AddCountryFragmen
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(intent);
+                //startActivity(intent);
 
             }
         });
@@ -51,12 +52,7 @@ public class MainActivity extends AppCompatActivity implements AddCountryFragmen
             @Override
             public void onClick(View view) {
 
-                View hide = findViewById(R.id.main);
-                hide.setVisibility(View.INVISIBLE);
-                transaction = getFragmentManager().beginTransaction();
-                AddCountryFragment frag = new AddCountryFragment();
-                transaction.add(R.id.add_country_layout, frag);
-                transaction.commit();
+
             }
         });
 
@@ -69,19 +65,32 @@ public class MainActivity extends AppCompatActivity implements AddCountryFragmen
         dlCountries = findViewById(R.id.drawer_layout);
         dlCountries.setScrimColor(Color.TRANSPARENT);
         String[] regCountries = countries.toArray(new String[0]);
+        String[] options = getResources().getStringArray(R.array.options);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                R.layout.listview_style, regCountries);
+                R.layout.listview_style, options);
 
         ListView lstCountries = findViewById(R.id.nav_countries);
         lstCountries.setAdapter(adapter);
         lstCountries.setBackgroundColor(ContextCompat.getColor(getBaseContext(), R.color.colorPrimary));
 
-
+        final Intent intent = new Intent(this, CalcReiseActivity.class);
         lstCountries.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                updateLayout(i);
+                if(i == 0) {
+                    startActivity(intent);
+                    dlCountries.closeDrawer(Gravity.START);
+                    return;
+                }
+
+                View hide = findViewById(R.id.main);
+                hide.setVisibility(View.INVISIBLE);
+                transaction = getFragmentManager().beginTransaction();
+                AddCountryFragment frag = new AddCountryFragment();
+                transaction.add(R.id.add_country_layout, frag);
+                transaction.commit();
+
                 dlCountries.closeDrawer(Gravity.START);
 
             }
