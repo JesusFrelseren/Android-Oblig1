@@ -11,9 +11,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements AddCountryFragment.OnNewCountryAdded  {
     TextView txt_by;
-    Button btnNext, btnAddCountry;
+
     private DrawerLayout dlCountries;
     private FragmentTransaction transaction;
     private ArrayList<String> countries, cities, hotels;
@@ -38,25 +38,31 @@ public class MainActivity extends AppCompatActivity implements AddCountryFragmen
         cities = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.cities)));
         hotels = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.hotels)));
         initMenu();
+        initSpinner();
 
-        btnNext = findViewById(R.id.til_calc);
-        btnNext.setOnClickListener(new View.OnClickListener() {
+
+
+    }
+
+    protected void initSpinner() {
+        Spinner spinner = findViewById(R.id.spin_countries);
+        String[] regCountries = countries.toArray(new String[0]);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                R.layout.spinner_currency_style, regCountries);
+
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                //startActivity(intent);
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                updateLayout(i);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                //Not implemented
             }
         });
-        btnAddCountry = findViewById(R.id.btn_goto_fragment);
-        btnAddCountry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-            }
-        });
-
-
     }
 
 
@@ -64,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements AddCountryFragmen
     protected void initMenu() {
         dlCountries = findViewById(R.id.drawer_layout);
         dlCountries.setScrimColor(Color.TRANSPARENT);
-        String[] regCountries = countries.toArray(new String[0]);
+
         String[] options = getResources().getStringArray(R.array.options);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
@@ -103,7 +109,8 @@ public class MainActivity extends AppCompatActivity implements AddCountryFragmen
         countries.add(country);
         cities.add(city);
         hotels.add(hotel);
-        initMenu();
+
+        initSpinner();
     }
 
     //Is called whenever user clicks an item in ListView Drawer
